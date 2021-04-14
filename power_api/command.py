@@ -196,15 +196,28 @@ class Command:
             )
             # print("CRC Calculated: " + str(crc_calculated))
 
-            if crc_calculated == crc_received:
-                # print("CRC Check OK")
-                # print('[{}]'.format(', '.join(hex(x) for x in self.buffer_receive)))
+            #debugging invalid information received
+
+            try:
+                print("CRC Check OK")
+                print('[{}]'.format(', '.join(hex(x) for x in self.buffer_receive)))
                 self.buffer_receive_index = 0
                 return self.buffer_receive[0 : PROTOCOL_FRAME_SIZE + datalen]
-            else:
+            except Exception as e:
                 print("CRC Check FAILED!")
+                print(e)
                 self.buffer_receive_index = 0
                 raise crc_check_failed("CRC check failed!")
+
+            #if crc_calculated == crc_received:
+            #    # print("CRC Check OK")
+            #    # print('[{}]'.format(', '.join(hex(x) for x in self.buffer_receive)))
+            #    self.buffer_receive_index = 0
+            #    return self.buffer_receive[0 : PROTOCOL_FRAME_SIZE + datalen]
+            #else:
+            #    print("CRC Check FAILED!")
+            #    self.buffer_receive_index = 0
+            #    raise crc_check_failed("CRC check failed!")
 
     # Function for receiving command
     def receive_command(self, len_of_response):
