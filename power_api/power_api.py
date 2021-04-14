@@ -12,9 +12,6 @@ command = Command()
 #############################################################
 ### Communication Protocol ##################################
 #############################################################
-buffer_send = list()
-buffer_receive = list()
-buffer_recieve_index = 0
 
 RESPONSE_DELAY = 10
 
