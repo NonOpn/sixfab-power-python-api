@@ -199,13 +199,13 @@ class Command:
             #debugging invalid information received
 
             try:
-                print("CRC Check OK")
-                print('[{}]'.format(', '.join(hex(x) for x in self.buffer_receive)))
+                #print("CRC Check OK")
+                #print('[{}]'.format(', '.join(hex(x) for x in self.buffer_receive)))
                 self.buffer_receive_index = 0
                 return self.buffer_receive[0 : PROTOCOL_FRAME_SIZE + datalen]
             except Exception as e:
-                print("CRC Check FAILED!")
-                print(e)
+                #print("CRC Check FAILED!")
+                #print(e)
                 self.buffer_receive_index = 0
                 raise crc_check_failed("CRC check failed!")
 
@@ -226,7 +226,7 @@ class Command:
             try:
                 c = bus.read_byte(DEVICE_ADDRESS)
             except:
-                print("error in " + str(i))
+                #print("error in " + str(i))
                 return self.BYTE_READ_FAILED
 
             # print("Recieved byte: " + str(hex(c)))
